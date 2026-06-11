@@ -341,6 +341,10 @@ class KagentCLI {
 
   // Show market summary
   showMarket() {
+    if (!existsSync(this.symbolsPath)) {
+      console.log(`${colors.yellow}KAgent 未初始化。请先运行 'kagent init'${colors.reset}`);
+      return;
+    }
     const events = this.readAllEvents();
     const symbols = JSON.parse(readFileSync(this.symbolsPath, 'utf8'));
 
