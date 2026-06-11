@@ -587,9 +587,23 @@ ${colors.bold}Options:${colors.reset}
         break;
       case 'chart':
         if (!args[1]) {
-          console.log(`${colors.red}Please specify a file${colors.reset}`);
-          console.log(`${colors.gray}Usage: kagent chart <file>${colors.reset}`);
-          process.exit(1);
+          // 显示可选文件列表
+          if (!existsSync(this.symbolsPath)) {
+            console.log(`${colors.yellow}KAgent 未初始化${colors.reset}`);
+          } else {
+            const symbols = JSON.parse(readFileSync(this.symbolsPath, 'utf8'));
+            const files = Object.keys(symbols.symbols);
+            if (files.length === 0) {
+              console.log(`${colors.yellow}暂无可追踪的文件${colors.reset}`);
+            } else {
+              console.log(`\n${colors.bold}可选文件:${colors.reset}`);
+              for (const f of files) {
+                console.log(`  ${colors.cyan}${f}${colors.reset}`);
+              }
+              console.log(`\n${colors.gray}用法: kagent chart <文件名>${colors.reset}`);
+            }
+          }
+          process.exit(0);
         }
         this.showChart(args[1]);
         break;
