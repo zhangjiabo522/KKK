@@ -1,0 +1,33 @@
+#!/bin/bash
+
+# ═══════════════════════════════════════════
+#  KKK 一键启动命令
+#  自动初始化 + 监听文件变更
+# ═══════════════════════════════════════════
+
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+CYAN='\033[0;36m'
+BOLD='\033[1m'
+NC='\033[0m'
+
+cd "$(pwd)"
+
+echo ""
+echo -e "${CYAN}${BOLD}╔══════════════════════════════════════════╗${NC}"
+echo -e "${CYAN}${BOLD}║       KKK - 文件变更 K 线追踪器         ║${NC}"
+echo -e "${CYAN}${BOLD}╚══════════════════════════════════════════╝${NC}"
+echo ""
+
+# 初始化 KAgent
+kagent init
+
+echo ""
+echo -e "${GREEN}▸ 启动文件监听...${NC}"
+echo -e "${GREEN}  • 使用 Ctrl+C 停止${NC}"
+echo -e "${GREEN}  • 使用 kagent market 查看市场${NC}"
+echo -e "${GREEN}  • 使用 kagent chart <file> 查看K线图${NC}"
+echo ""
+
+# 启动监听
+kagent watch

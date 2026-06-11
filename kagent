@@ -1,0 +1,26 @@
+#!/bin/bash
+
+# KAgent CLI - Shell wrapper script
+# This script allows you to use kagent commands directly from terminal
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+case "$1" in
+  init|market|watch|help)
+    node "$SCRIPT_DIR/index.js" "$@"
+    ;;
+  chart)
+    if [ -z "$2" ]; then
+      echo "Usage: kagent chart <file>"
+      exit 1
+    fi
+    node "$SCRIPT_DIR/index.js" chart "$2"
+    ;;
+  --color-scheme)
+    shift
+    node "$SCRIPT_DIR/index.js" --color-scheme "$1" market
+    ;;
+  *)
+    node "$SCRIPT_DIR/index.js" help
+    ;;
+esac

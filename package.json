@@ -1,0 +1,31 @@
+{
+  "name": "kagent-cli",
+  "version": "1.0.0",
+  "description": "KKK - 文件变更 K 线追踪器 (Claude Code / OpenCode / MiMoCode)",
+  "main": "index.js",
+  "bin": {
+    "kagent": "./index.js",
+    "kkk": "./kkk"
+  },
+  "type": "module",
+  "scripts": {
+    "start": "node index.js kkk",
+    "postinstall": "chmod +x ./install.sh ./kkk 2>/dev/null || true"
+  },
+  "keywords": [
+    "kagent",
+    "k-line",
+    "claude-code",
+    "opencode",
+    "mimocode",
+    "file-tracking",
+    "git",
+    "visualization"
+  ],
+  "author": "zhangjiabo522",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:zhangjiabo522/KKK.git"
+  }
+}
